@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Local tooling (Claude Code, editors)
+.claude/
+.idea/
+.vscode/
+
+# Packaging artifacts
+*.zip
+
+# Just in case a secrets file ever appears — never commit these
+.env
+.env.*
+*.pem

@@ -1,0 +1,34 @@
+# Babe, Get This — Hostinger config
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Allow extensionless URLs: /privacy-policy -> /privacy-policy.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# Basic caching for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType text/css "access plus 7 days"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  # Browsers remember to only ever use HTTPS for this domain
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # Never guess MIME types
+  Header always set X-Content-Type-Options "nosniff"
+  # Nobody may embed this site in an iframe (blocks clickjacking of the delete form)
+  Header always set X-Frame-Options "DENY"
+  # Don't leak full URLs to other sites
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # This site needs no device APIs
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  # Only allow scripts/styles/connections we actually use; blocks data exfiltration
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://fpzjyusgqdzqituokrwq.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+</IfModule>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Your Account — Babe, Get This</title>
+  <meta name="description" content="Delete your Babe, Get This account instantly, or request deletion by email.">
+  <link rel="canonical" href="https://babegetthis.com/delete-account.html">
+  <link rel="icon" type="image/webp" href="assets/favicon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="wrap">
+    <nav class="nav">
+      <img src="assets/icon.webp" alt="Babe, Get This app icon">
+      <a class="brand" href="index.html">Babe, Get This</a>
+      <a class="navlink" href="index.html">Home</a>
+      <a class="navlink" href="privacy-policy.html">Privacy</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Delete Your Account</h1>
+    <p class="updated">Applies to: Babe, Get This (Android) — developer: Aabhash Rai</p>
+
+    <p>You can permanently delete your <strong>Babe, Get This</strong> account at any time — right here, in the app, or by email. We're sad to see you go, but it's your data and your call.</p>
+
+    <h2>Delete it now</h2>
+    <p>Sign in with your account below and your account is deleted immediately — same as the delete button in the app.</p>
+
+    <form class="del-card" id="delForm" hidden>
+      <label for="delEmail">Email</label>
+      <input type="email" id="delEmail" autocomplete="email" required>
+      <label for="delPassword">Password</label>
+      <input type="password" id="delPassword" autocomplete="current-password" required>
+      <label class="check">
+        <input type="checkbox" id="delConfirm" required>
+        <span>I understand this permanently deletes my account and cannot be undone.</span>
+      </label>
+      <button type="submit" class="btn danger" id="delBtn">Delete my account</button>
+      <p class="status" id="delStatus" role="status"></p>
+    </form>
+
+    <div class="note" id="delFallback">
+      Instant deletion is temporarily unavailable on the website — you can still delete your account from inside the app (Settings → Delete account), or by email below.
+    </div>
+
+    <h2>Or request deletion by email</h2>
+    <ul>
+      <li>Send an email to <a href="mailto:raiaabhash3@gmail.com?subject=Delete%20my%20Babe%2C%20Get%20This%20account">raiaabhash3@gmail.com</a> with the subject line <strong>"Delete my account"</strong>.</li>
+      <li>Send the email <strong>from the email address you registered with</strong>, or include that address in the message, so we can verify the request is really yours.</li>
+      <li>We will confirm the request and complete the deletion within <strong>30 days</strong>. You'll receive a confirmation email when it's done.</li>
+    </ul>
+
+    <h2>What gets deleted</h2>
+    <ul>
+      <li>Your account (email address and authentication credentials).</li>
+      <li>Any feedback or support correspondence linked to your account, unless we are legally required to keep it.</li>
+    </ul>
+
+    <h2>What is not affected</h2>
+    <ul>
+      <li><strong>Your lists</strong> — they live only on your device and were never uploaded to our servers. Uninstall the app or clear its storage in Android settings to remove them.</li>
+      <li><strong>Lists you shared as text</strong> — copies you sent to others through messaging apps live in those apps and can't be recalled by us.</li>
+      <li><strong>Legal retention</strong> — in rare cases we may need to retain minimal records where required by law; these are deleted as soon as that requirement ends.</li>
+    </ul>
+
+    <div class="note">
+      Deletion is permanent and cannot be undone. If you just want a fresh start, you can also simply delete individual lists inside the app and keep your account.
+    </div>
+
+    <h2>Questions?</h2>
+    <p>Email us at <a href="mailto:raiaabhash3@gmail.com">raiaabhash3@gmail.com</a> — happy to help. You can also read our full <a href="privacy-policy.html">Privacy Policy</a> to see exactly what data the app collects.</p>
+  </main>
+
+  <footer>
+    <div class="wrap cols">
+      <span class="copy">© 2026 Babe, Get This</span>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="delete-account.html">Delete Your Account</a>
+      <a href="mailto:raiaabhash3@gmail.com">raiaabhash3@gmail.com</a>
+    </div>
+  </footer>
+
+  <!-- Pinned version + SRI hash: the browser refuses to run the script if the
+       CDN ever serves anything but this exact file. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.2/dist/umd/supabase.min.js"
+          integrity="sha384-sgcvElP/LlNRtORGYFLO/9K/bENcpJK19HgvqslWXog6d8f/Va4TpltGiBlGntCM"
+          crossorigin="anonymous"></script>
+  <script>
+    // Same project + flow as the Android app: sign in, then call the
+    // security-definer Postgres function delete_user (anon key can't touch
+    // auth.users directly). The anon key is safe to publish.
+    const SUPABASE_URL = "https://fpzjyusgqdzqituokrwq.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_iZuhs5tTaIM5-6790l589g_vKdbzWJD";
+
+    const form = document.getElementById("delForm");
+    const fallback = document.getElementById("delFallback");
+    const status = document.getElementById("delStatus");
+    const btn = document.getElementById("delBtn");
+
+    if (SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase) {
+      const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      form.hidden = false;
+      fallback.hidden = true;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!confirm("Really delete your account forever? This cannot be undone.")) return;
+
+        btn.disabled = true;
+        status.className = "status";
+        status.textContent = "Deleting your account…";
+
+        const email = document.getElementById("delEmail").value.trim();
+        const password = document.getElementById("delPassword").value;
+
+        try {
+          const { error: signInError } = await client.auth.signInWithPassword({ email, password });
+          if (signInError) throw new Error("Sign-in failed — check your email and password.");
+
+          const { error: rpcError } = await client.rpc("delete_user");
+          if (rpcError) throw new Error("Deletion failed. Please try again or email us and we'll handle it.");
+
+          await client.auth.signOut().catch(() => {});
+          form.reset();
+          status.className = "status ok";
+          status.textContent = "Your account has been deleted. Sorry to see you go 💔";
+        } catch (err) {
+          status.className = "status err";
+          status.textContent = err.message;
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
