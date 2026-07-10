@@ -34,4 +34,3 @@ Hosted on Hostinger. Upload everything (including `.htaccess` and `assets/`) int
 ## Related
 
 - Android app repo: `Babe-get-this`
-- Contact: raiaabhash3@gmail.com
