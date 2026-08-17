@@ -30,5 +30,7 @@ RewriteRule ^(.+)$ $1.html [L]
   # This site needs no device APIs
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   # Only allow scripts/styles/connections we actually use; blocks data exfiltration
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://fpzjyusgqdzqituokrwq.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+  # No 'unsafe-inline': all scripts live in assets/*.js and all styles in
+  # styles.css, so an injected <script> or style attribute cannot execute.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://fpzjyusgqdzqituokrwq.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 </IfModule>
