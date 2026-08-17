@@ -169,6 +169,14 @@ header {
   margin-top: 14px;
 }
 
+.store-note a {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.store-note a:hover { text-decoration: underline; }
+
 /* ---------- Hero screenshot ---------- */
 
 .shot {
@@ -264,6 +272,72 @@ header {
 
 .soon h2 { font-size: 1.7rem; font-weight: 900; margin-bottom: 10px; }
 .soon p { color: var(--text-2); max-width: 52ch; margin: 0 auto 22px; }
+
+/* ---------- Waitlist form ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.waitlist { max-width: 520px; }
+
+.waitlist-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.waitlist input[type="email"] {
+  flex: 1 1 220px;
+  min-width: 0;
+  font: inherit;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--divider);
+  border-radius: 999px;
+  padding: 13px 20px;
+}
+
+.waitlist input[type="email"]:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.waitlist .btn.primary {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.waitlist .btn.primary:disabled { opacity: 0.6; cursor: default; }
+
+/* Off-screen rather than display:none — bots that skip hidden fields still
+   fill this one, which is the whole point. */
+.waitlist-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.waitlist .status {
+  margin: 12px 0 0;
+  font-weight: 700;
+  font-size: 0.92rem;
+  min-height: 1.4em;
+  color: var(--text-2);
+}
+
+.waitlist .status.ok { color: var(--tertiary); }
+.waitlist .status.err { color: #B3261E; }
 
 /* ---------- Legal / content pages ---------- */
 
@@ -408,6 +482,8 @@ footer a:hover { color: var(--primary); }
   .hero { grid-template-columns: 1fr; padding: 40px 0 56px; text-align: center; }
   .hero p.sub { margin-left: auto; margin-right: auto; }
   .cta-row { justify-content: center; }
+  .waitlist { margin-left: auto; margin-right: auto; }
+  .waitlist-row { justify-content: center; }
   .shot { margin-top: 20px; }
   .grid { grid-template-columns: 1fr 1fr; }
 }

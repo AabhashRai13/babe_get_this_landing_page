@@ -25,11 +25,11 @@
 
   <main class="page">
     <h1>Privacy Policy</h1>
-    <p class="updated">Effective date: July 8, 2026</p>
+    <p class="updated">Effective date: August 16, 2026</p>
 
     <p>This Privacy Policy describes how <strong>Babe, Get This</strong> ("the app", "we", "us") collects, uses, and protects your information when you use our Android application and the website <a href="https://babegetthis.com">babegetthis.com</a>.</p>
 
-    <p>The short version: we collect almost nothing — your email address for your account, and any feedback you choose to send us. <strong>Your shopping lists and items stay on your device and are never uploaded to our servers.</strong> We do not show ads, we do not use third-party advertising or analytics SDKs, and we never sell your data.</p>
+    <p>The short version: lists you keep to yourself stay on your device and are never uploaded. When you share a list using a share code, that list (and its items) is stored on our server so the people you share with can see and edit it. <strong>Sharing is the only thing that uploads a list — if you never share, nothing about your lists leaves your phone.</strong> No ads, no third-party analytics, no data sales.</p>
 
     <h2>1. Information We Collect</h2>
 
@@ -39,15 +39,27 @@
       <li><strong>Why we require an account</strong> — features like voice transcription run on our servers and cost real money to operate. Sign-in exists solely to prevent abuse of that infrastructure, not to profile you.</li>
     </ul>
 
+    <h3>Website waitlist</h3>
+    <ul>
+      <li><strong>Email address</strong> — if you enter your email in the "Notify me at launch" form on <a href="https://babegetthis.com">babegetthis.com</a>, we store it so we can email you once when the app is released. That is the only thing we use it for: no newsletter, no marketing series, no sharing with anyone else.</li>
+      <li><strong>Anti-spam data</strong> — alongside your email we store a one-way hash of your IP address (not the address itself) purely to limit how many signups can come from one network. It is not used to identify or track you.</li>
+      <li><strong>Opting out</strong> — every launch email includes an unsubscribe link, and you can ask us to remove your address at any time by emailing <a href="mailto:contactus@babegetthis.com">contactus@babegetthis.com</a>. Joining the waitlist does not create an account.</li>
+    </ul>
+
     <h3>Feedback</h3>
     <ul>
       <li><strong>Feedback you send</strong> — if you submit feedback through the app or email us, we receive the message you write (and your email address if you contact us by email). We use it only to improve the app and respond to you.</li>
     </ul>
 
+    <h3>Shared lists</h3>
+    <ul>
+      <li><strong>When you share a list</strong>, we store on our server: the list name, and each item's name, quantity, category, shop, note, and checked/unchecked state. We also store who created the list and who has joined it (linked to accounts). We do not record who added, edited, or checked off each item — there is no per-edit history.</li>
+    </ul>
+
     <h3>Voice recordings</h3>
     <ul>
-      <li><strong>Audio</strong> — only when you actively use the voice capture feature, the app records audio through your device microphone and transmits it over an encrypted connection (HTTPS) to our transcription service, which converts your speech into shopping list items. Recording happens only while the voice capture screen is open and you have started a recording; the app never listens in the background.</li>
-      <li>Audio is processed for the sole purpose of transcription. Recordings are processed transiently and are not used for advertising, profiling, or training unrelated systems.</li>
+      <li><strong>Audio</strong> — only when you actively use the voice capture feature, the app records audio through your device microphone and sends it over an encrypted connection (HTTPS) to our backend, which uses a speech-to-text service to transcribe it and then an AI text service to pull out the shopping items. Recording happens only while the voice capture screen is open and you have started a recording; the app never listens in the background.</li>
+      <li>Both services receive only your recording or its transcript for that one request; neither uses it for advertising, profiling, or training.</li>
       <li>The microphone permission is optional — you can decline it and use every other feature of the app normally.</li>
     </ul>
 
@@ -59,7 +71,7 @@
 
     <h2>2. What We Do NOT Collect</h2>
     <ul>
-      <li><strong>Your shopping lists and items</strong> — list names, items, quantities, categories, notes, and shop names live only on your device. They are never uploaded to or stored on our servers.</li>
+      <li><strong>Lists you never share</strong> — these stay entirely on your device.</li>
       <li>No advertising identifiers, and no ads of any kind.</li>
       <li>No third-party analytics or tracking SDKs.</li>
       <li>No location data.</li>
@@ -72,6 +84,7 @@
       <li>To create and secure your account and keep you signed in.</li>
       <li>To convert your voice recordings into shopping list items when you use voice capture.</li>
       <li>To read and act on feedback you send us.</li>
+      <li>To send you a single launch notification if you joined the website waitlist.</li>
       <li>To maintain, troubleshoot, and improve the reliability and security of the service.</li>
       <li>To respond when you contact us for support.</li>
     </ul>
@@ -79,31 +92,37 @@
     <h2>4. Service Providers</h2>
     <p>We use a small number of infrastructure providers to run the app. They process data on our behalf and are not permitted to use it for their own purposes:</p>
     <ul>
-      <li><strong>Supabase</strong> — authentication (your account). See the <a href="https://supabase.com/privacy" rel="noopener">Supabase Privacy Policy</a>.</li>
-      <li><strong>Railway</strong> — hosting for our backend service, including the voice transcription endpoint. See the <a href="https://railway.com/legal/privacy" rel="noopener">Railway Privacy Policy</a>.</li>
-      <li><strong>Speech-to-text processing</strong> — voice recordings may be processed by a trusted speech-recognition provider solely to produce a transcript of your recording.</li>
+      <li><strong>Supabase</strong> — accounts, and storage/sync of shared lists. See the <a href="https://supabase.com/privacy" rel="noopener">Supabase Privacy Policy</a>.</li>
+      <li><strong>Railway</strong> — hosts our backend and the voice endpoint. See the <a href="https://railway.com/legal/privacy" rel="noopener">Railway Privacy Policy</a>.</li>
+      <li><strong>Groq</strong> — transcribes voice recordings to text. See the <a href="https://groq.com/privacy-policy" rel="noopener">Groq Privacy Policy</a>.</li>
+      <li><strong>Anthropic</strong> — turns the transcript into a list of items. See the <a href="https://www.anthropic.com/legal/privacy" rel="noopener">Anthropic Privacy Policy</a>.</li>
     </ul>
 
     <h2>5. Data Storage and Security</h2>
     <ul>
-      <li>Your lists are stored only locally on your device — we have no copy of them.</li>
+      <li>Lists you don't share are stored only locally on your device — we have no copy of them. Shared lists are stored on our server.</li>
       <li>All communication between the app and our servers is encrypted in transit using HTTPS/TLS.</li>
       <li>Access to production data is restricted, and passwords are stored using industry-standard hashing.</li>
       <li>No method of transmission or storage is 100% secure, but we work to protect your information using reasonable technical and organizational measures.</li>
     </ul>
 
+    <h3>When you share a list</h3>
+    <p>Anyone who has a list's share code can view and edit that list. Treat the code like a key — only give it to people you want in the list. In this version, once you've shared a list you cannot rotate its code or remove someone who has joined; to stop sharing, delete the list on your device (it stays with the other members). We're planning finer controls in a future update.</p>
+
     <h2>6. Data Retention</h2>
     <ul>
       <li><strong>Account data</strong> is kept for as long as your account exists.</li>
       <li><strong>Feedback</strong> is kept only as long as it is useful for improving the app.</li>
+      <li><strong>Waitlist emails</strong> are deleted within 30 days of the launch email being sent, or sooner if you ask us to remove you.</li>
       <li><strong>Voice recordings</strong> are processed transiently for transcription and are not retained as a voice archive.</li>
-      <li>When you delete your account, your account record is permanently deleted from our systems within 30 days, except where a longer retention period is required by law. Your lists live only on your device and are removed when you uninstall the app or clear its data.</li>
+      <li><strong>Shared lists</strong> are kept on our server while at least one member still has the list. Deleted items and lists are marked deleted but their rows are retained — this is how the deletion reaches other members' devices.</li>
+      <li>When you delete your account, your account record is permanently deleted from our systems within 30 days, except where a longer retention period is required by law. A list you shared stays available to the other members who joined it, but is no longer linked to you. Local lists are removed when you uninstall the app or clear its data.</li>
     </ul>
 
     <h2>7. Your Rights and Choices</h2>
     <p>Depending on where you live, you may have rights to access, correct, export, or delete your personal data, and to object to or restrict certain processing. You can exercise these rights at any time:</p>
     <ul>
-      <li><strong>Access or correction</strong> — your lists live on your device and are directly editable in the app. For account data, email us.</li>
+      <li><strong>Access or correction</strong> — your lists (local and shared) are directly visible and editable in the app. For account data, email us.</li>
       <li><strong>Deletion</strong> — see our <a href="delete-account.html">account deletion page</a> for step-by-step instructions.</li>
       <li><strong>Anything else</strong> — email us at <a href="mailto:contactus@babegetthis.com">contactus@babegetthis.com</a> and we will respond within 30 days.</li>
     </ul>
