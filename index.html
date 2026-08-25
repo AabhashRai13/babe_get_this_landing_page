@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Babe, Get This — The shared shopping list for couples</title>
-  <meta name="description" content="Babe, Get This is a voice-powered shopping list app for couples. Say it out loud, it becomes a list. Coming soon to Google Play.">
+  <meta name="description" content="Babe, Get This is a voice-powered shopping list app for couples. Say it out loud, it becomes a list. Free on Google Play.">
   <link rel="canonical" href="https://babegetthis.com/">
   <link rel="icon" type="image/webp" href="assets/favicon.webp">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://babegetthis.com/">
   <meta property="og:title" content="Babe, Get This — The shared shopping list for couples">
-  <meta property="og:description" content="Say it out loud, it becomes a list. Coming soon to Google Play.">
+  <meta property="og:description" content="Say it out loud, it becomes a list. Free on Google Play.">
   <meta property="og:image" content="https://babegetthis.com/assets/icon.webp">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +26,8 @@
     "applicationCategory": "Shopping",
     "description": "A voice-powered shopping list app for couples.",
     "url": "https://babegetthis.com/",
-    "offers": { "@type": "Offer", "price": "0" }
+    "installUrl": "https://play.google.com/store/apps/details?id=com.babegetthis.android",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
 </head>
@@ -45,26 +46,15 @@
 
     <section class="hero">
       <div>
-        <span class="badge">🛒 Coming soon to Google Play</span>
+        <span class="badge">🛒 Now on Google Play</span>
         <h1>One list for the <em>two of you</em></h1>
         <p class="sub">Say it out loud, it becomes a list.</p>
 
-        <form class="waitlist" id="wlForm" novalidate>
-          <label class="sr-only" for="wlEmail">Email address</label>
-          <div class="waitlist-row">
-            <input id="wlEmail" name="email" type="email" required autocomplete="email"
-                   placeholder="you@email.com" aria-describedby="wlStatus">
-            <button class="btn primary" id="wlBtn" type="submit">Notify me at launch</button>
-          </div>
-          <!-- Honeypot: hidden from humans, filled in by naive bots. -->
-          <div class="waitlist-hp" aria-hidden="true">
-            <label for="wlCompany">Company</label>
-            <input id="wlCompany" name="company" type="text" tabindex="-1" autocomplete="off">
-          </div>
-          <p class="status" id="wlStatus" role="status" aria-live="polite"></p>
-        </form>
+        <div class="cta-row">
+          <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it on Google Play</a>
+        </div>
 
-        <p class="store-note">Free on Android. Unshared lists stay on your phone. One email at launch, nothing else — see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        <p class="store-note">Free on Android. Unshared lists stay on your phone — see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
       </div>
 
       <div class="shot">
@@ -109,8 +99,6 @@
       <a href="mailto:contactus@babegetthis.com">contactus@babegetthis.com</a>
     </div>
   </footer>
-
-  <script src="assets/waitlist.js"></script>
 
 </body>
 </html>
