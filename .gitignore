@@ -13,3 +13,6 @@
 .env
 .env.*
 *.pem
+
+# Supabase CLI per-machine state
+supabase/.temp/

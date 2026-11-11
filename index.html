@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Babe, Get This — The shared shopping list for couples</title>
-  <meta name="description" content="Babe, Get This is a voice-powered shopping list app for couples. Say it out loud, it becomes a list. Free on Google Play.">
+  <meta name="description" content="Babe, Get This is a voice-powered shopping list app for couples. Say it out loud, it becomes a list. Free on Google Play, coming soon to iPhone.">
   <link rel="canonical" href="https://babegetthis.com/">
   <link rel="icon" type="image/webp" href="assets/favicon.webp">
   <meta property="og:type" content="website">
@@ -12,7 +12,10 @@
   <meta property="og:title" content="Babe, Get This — The shared shopping list for couples">
   <meta property="og:description" content="Say it out loud, it becomes a list. Free on Google Play.">
   <meta property="og:image" content="https://babegetthis.com/assets/icon.webp">
+  <meta property="og:site_name" content="Babe, Get This">
   <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#607D8B">
+  <link rel="apple-touch-icon" href="assets/icon.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -30,6 +33,62 @@
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Babe, Get This free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The app is free on Google Play, with no ads and no data sales."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an iPhone version?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet, but the iOS app is on the way. Leave your email in the form above and we'll send you one email the day it's on the App Store."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do we share a shopping list?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open a list and share its code with your partner. Once they join, you both see the same list and every change syncs live."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does voice capture work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tap record and say what you need, as messily as you like. The app turns it into tidy list items with quantities and categories. Voice capture needs an internet connection and an account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can see my lists?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lists you don't share stay on your phone and are never uploaded. Only lists you share are stored on our server, so the people you share them with can see and edit them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You sign up with an email address. Voice transcription runs on our servers, and the account is there to prevent abuse of that, not to profile you."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -38,6 +97,7 @@
       <img src="assets/icon.webp" alt="Babe, Get This app icon">
       <a class="brand" href="index.html">Babe, Get This</a>
       <a class="navlink" href="#features">Features</a>
+      <a class="navlink" href="#faq">FAQ</a>
       <a class="navlink" href="privacy-policy.html">Privacy</a>
     </nav>
   </header>
@@ -55,10 +115,26 @@
         </div>
 
         <p class="store-note">Free on Android. Unshared lists stay on your phone — see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+
+        <form class="waitlist" id="wlForm" novalidate>
+          <p class="waitlist-title" id="wlTitle">On iPhone? iOS is on the way.</p>
+          <label class="sr-only" for="wlEmail">Email address</label>
+          <div class="waitlist-row">
+            <input id="wlEmail" name="email" type="email" required autocomplete="email"
+                   placeholder="you@email.com" aria-describedby="wlTitle wlStatus">
+            <button class="btn secondary" id="wlBtn" type="submit">Notify me</button>
+          </div>
+          <!-- Honeypot: hidden from humans, filled in by naive bots. -->
+          <div class="waitlist-hp" aria-hidden="true">
+            <label for="wlCompany">Company</label>
+            <input id="wlCompany" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="status" id="wlStatus" role="status" aria-live="polite">One email when it's on the App Store, nothing else.</p>
+        </form>
       </div>
 
       <div class="shot">
-        <img src="assets/screenshot-home.jpg" alt="Babe, Get This home screen showing two shopping lists" width="300" loading="eager">
+        <img src="assets/screenshot-home.jpg" alt="Babe, Get This home screen showing two shopping lists" width="300" height="650" fetchpriority="high">
       </div>
     </section>
 
@@ -88,6 +164,36 @@
       </div>
     </section>
 
+    <section class="section faq" id="faq">
+      <h2>Questions, answered</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Babe, Get This free?</summary>
+          <p>Yes. The app is free on Google Play, with no ads and no data sales.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is there an iPhone version?</summary>
+          <p>Not yet, but the iOS app is on the way. Leave your email in the form above and we&#x27;ll send you one email the day it&#x27;s on the App Store.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do we share a shopping list?</summary>
+          <p>Open a list and share its code with your partner. Once they join, you both see the same list and every change syncs live.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does voice capture work?</summary>
+          <p>Tap record and say what you need, as messily as you like. The app turns it into tidy list items with quantities and categories. Voice capture needs an internet connection and an account.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Who can see my lists?</summary>
+          <p>Lists you don&#x27;t share stay on your phone and are never uploaded. Only lists you share are stored on our server, so the people you share them with can see and edit them.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need an account?</summary>
+          <p>Yes. You sign up with an email address. Voice transcription runs on our servers, and the account is there to prevent abuse of that, not to profile you.</p>
+        </details>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -99,6 +205,8 @@
       <a href="mailto:contactus@babegetthis.com">contactus@babegetthis.com</a>
     </div>
   </footer>
+
+  <script src="assets/waitlist.js"></script>
 
 </body>
 </html>

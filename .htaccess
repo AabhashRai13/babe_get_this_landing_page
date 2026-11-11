@@ -5,6 +5,11 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# One canonical host: www.babegetthis.com -> babegetthis.com, so search engines
+# don't index two copies of every page
+RewriteCond %{HTTP_HOST} ^www\.babegetthis\.com$ [NC]
+RewriteRule ^ https://babegetthis.com%{REQUEST_URI} [L,R=301]
+
 # Allow extensionless URLs: /privacy-policy -> /privacy-policy.html
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
@@ -14,7 +19,10 @@ RewriteRule ^(.+)$ $1.html [L]
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
   ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType text/javascript "access plus 7 days"
 </IfModule>
 
 # Security headers
