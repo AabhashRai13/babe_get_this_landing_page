@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babe, Get This for iPhone — Join the waitlist</title>
+  <meta name="description" content="The shared shopping list for couples is coming to iPhone. Join the waitlist and get one email the day Babe, Get This is on the App Store.">
+  <link rel="canonical" href="https://babegetthis.com/ios.html">
+  <link rel="icon" type="image/webp" href="assets/favicon.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://babegetthis.com/ios.html">
+  <meta property="og:title" content="Babe, Get This is coming to iPhone">
+  <meta property="og:description" content="The shared shopping list for couples. Join the waitlist — one email on launch day, nothing else.">
+  <meta property="og:image" content="https://babegetthis.com/assets/og-image-ios.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Babe, Get This is coming to iPhone. Join the waitlist.">
+  <meta property="og:site_name" content="Babe, Get This">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#607D8B">
+  <link rel="apple-touch-icon" href="assets/icon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="wrap">
+    <nav class="nav">
+      <img src="assets/icon.webp" alt="Babe, Get This app icon">
+      <a class="brand" href="index.html">Babe, Get This</a>
+      <a class="navlink" href="#how">How it works</a>
+      <a class="btn primary" href="#join">Join the waitlist</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <section class="hero" id="join">
+      <div>
+        <span class="badge">📱 Coming to iPhone</span>
+        <h1>The couples' shopping list is coming to <em>iPhone</em>.</h1>
+        <p class="sub">Say it once and it's on both your phones. Get <strong>one email</strong> the day Babe, Get This lands on the App Store.</p>
+
+        <form class="waitlist" id="wlForm" novalidate>
+          <label class="sr-only" for="wlEmail">Email address</label>
+          <div class="waitlist-row" id="heroCta">
+            <input id="wlEmail" name="email" type="email" required autocomplete="email"
+                   placeholder="you@email.com" aria-describedby="wlStatus">
+            <button class="btn primary big" id="wlBtn" type="submit">Notify me</button>
+          </div>
+          <!-- Honeypot: hidden from humans, filled in by naive bots. -->
+          <div class="waitlist-hp" aria-hidden="true">
+            <label for="wlCompany">Company</label>
+            <input id="wlCompany" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="status" id="wlStatus" role="status" aria-live="polite">One email at launch, nothing else. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        </form>
+
+        <ul class="trust">
+          <li>Free</li>
+          <li>No ads</li>
+          <li>Unsubscribe anytime</li>
+        </ul>
+      </div>
+
+      <!-- TODO(ios-home): when assets/screenshots/ios-home.jpg exists, replace this
+           icon stage with the .stage/.phone markup from index.html pointing at it.
+           Don't use the Android screenshots here: they'd misrepresent the iPhone app. -->
+      <div class="stage icon-stage">
+        <img class="app-icon" src="assets/icon.webp" alt="Babe, Get This app icon" width="192" height="192">
+        <p class="icon-caption">Coming to the App Store</p>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="center">
+        <span class="eyebrow">See it work</span>
+        <h2>Ramble in. Tidy list out.</h2>
+        <p class="lede">Say it however it comes out. Babe, Get This pulls out the items, the quantities and the categories for you.</p>
+      </div>
+
+      <div class="demo" id="demo">
+        <div class="demo-card">
+          <h3><span class="mic" aria-hidden="true">🎙️</span> You say</h3>
+          <p class="speech" id="demoSpeech">“Okay, we need milk… um, two avocados, like six bananas, oh and the good bread, the sourdough one.”</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="demo-card">
+          <h3><span aria-hidden="true">✨</span> You get</h3>
+          <div class="list-group"><span>Produce</span>
+            <div class="list-item" data-at="avocados">Avocados <span class="qty">×2</span></div>
+            <div class="list-item" data-at="bananas">Bananas <span class="qty">×6</span></div>
+          </div>
+          <div class="list-group"><span>Dairy</span>
+            <div class="list-item" data-at="milk">Milk <span class="qty">×1</span></div>
+          </div>
+          <div class="list-group"><span>Bakery</span>
+            <div class="list-item" data-at="sourdough">Sourdough bread <span class="qty">×1</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="center"><button class="replay" id="demoReplay" type="button" hidden>↺ Play it again</button></div>
+    </section>
+
+    <section class="section">
+      <span class="eyebrow">How it works</span>
+      <h2>What's coming to your iPhone</h2>
+      <p class="lede">Set it up once on the couch, and every shop after that just works.</p>
+      <ol class="steps">
+        <li class="step">
+          <h3>Say it</h3>
+          <p>Tap the mic and talk like you would to your partner. Or type, if that's more your thing.</p>
+        </li>
+        <li class="step">
+          <h3>It sorts itself</h3>
+          <p>Quantities, categories, notes and shops, all filled in so the list reads like you wrote it carefully.</p>
+        </li>
+        <li class="step">
+          <h3>Share it with a code</h3>
+          <p>Send your partner one code. From then on you both see the same list, live, from wherever you are.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <div class="android-card">
+        <div>
+          <h2>Already on Android?</h2>
+          <p>Babe, Get This is free on Google Play today.</p>
+        </div>
+        <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it on Google Play</a>
+      </div>
+    </section>
+
+    <section class="section" id="finalCta">
+      <div class="band final">
+        <h2>Be first in line.</h2>
+        <p>One email on launch day. No newsletter, no spam, nothing else.</p>
+        <a class="btn light big" href="#join">Join the iPhone waitlist</a>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="mobile-cta" id="mobileCta">
+    <a class="btn primary big" href="#join">Join the iPhone waitlist</a>
+  </div>
+
+  <footer>
+    <div class="wrap cols">
+      <span class="copy">© 2026 Babe, Get This</span>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="delete-account.html">Delete Your Account</a>
+      <a href="mailto:contactus@babegetthis.com">contactus@babegetthis.com</a>
+    </div>
+  </footer>
+
+  <script src="assets/waitlist.js"></script>
+  <script src="assets/landing.js"></script>
+
+</body>
+</html>

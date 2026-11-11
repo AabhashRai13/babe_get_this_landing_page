@@ -11,15 +11,19 @@
   <meta property="og:url" content="https://babegetthis.com/">
   <meta property="og:title" content="Babe, Get This — The shared shopping list for couples">
   <meta property="og:description" content="Say it out loud, it becomes a list. Free on Google Play.">
-  <meta property="og:image" content="https://babegetthis.com/assets/icon.webp">
+  <meta property="og:image" content="https://babegetthis.com/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Babe, Get This: Say it once. It's on both your phones.">
   <meta property="og:site_name" content="Babe, Get This">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#607D8B">
   <link rel="apple-touch-icon" href="assets/icon.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="assets/platform.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,7 +55,7 @@
       "name": "Is there an iPhone version?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not yet, but the iOS app is on the way. Leave your email in the form above and we'll send you one email the day it's on the App Store."
+        "text": "Not yet, but the iOS app is on the way. Join the waitlist at babegetthis.com/ios and we'll send you one email the day it's on the App Store."
       }
     },
     {
@@ -96,9 +100,10 @@
     <nav class="nav">
       <img src="assets/icon.webp" alt="Babe, Get This app icon">
       <a class="brand" href="index.html">Babe, Get This</a>
-      <a class="navlink" href="#features">Features</a>
+      <a class="navlink" href="#how">How it works</a>
       <a class="navlink" href="#faq">FAQ</a>
-      <a class="navlink" href="privacy-policy.html">Privacy</a>
+      <a class="btn primary not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get the app</a>
+      <a class="btn primary only-ios" href="ios.html">iPhone waitlist</a>
     </nav>
   </header>
 
@@ -106,65 +111,122 @@
 
     <section class="hero">
       <div>
-        <span class="badge">🛒 Now on Google Play</span>
-        <h1>One list for the <em>two of you</em></h1>
-        <p class="sub">Say it out loud, it becomes a list.</p>
+        <span class="badge not-ios">🛒 Free on Google Play</span>
+        <span class="badge only-ios">📱 iPhone version coming soon</span>
+        <h1>Say it once. It's on <em>both</em> your phones.</h1>
+        <p class="sub">Babe, Get This turns <strong>“we need milk, eggs and the good bread”</strong> into one shared shopping list for the two of you, updated live.</p>
 
-        <div class="cta-row">
-          <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it on Google Play</a>
+        <div class="cta-row" id="heroCta">
+          <a class="btn primary big not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it free on Google Play</a>
+          <a class="btn primary big only-ios" href="ios.html">Join the iPhone waitlist</a>
         </div>
 
-        <p class="store-note">Free on Android. Unshared lists stay on your phone — see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        <ul class="trust">
+          <li>Free</li>
+          <li>No ads</li>
+          <li>Unshared lists stay on your phone</li>
+        </ul>
 
-        <form class="waitlist" id="wlForm" novalidate>
-          <p class="waitlist-title" id="wlTitle">On iPhone? iOS is on the way.</p>
-          <label class="sr-only" for="wlEmail">Email address</label>
-          <div class="waitlist-row">
-            <input id="wlEmail" name="email" type="email" required autocomplete="email"
-                   placeholder="you@email.com" aria-describedby="wlTitle wlStatus">
-            <button class="btn secondary" id="wlBtn" type="submit">Notify me</button>
-          </div>
-          <!-- Honeypot: hidden from humans, filled in by naive bots. -->
-          <div class="waitlist-hp" aria-hidden="true">
-            <label for="wlCompany">Company</label>
-            <input id="wlCompany" name="company" type="text" tabindex="-1" autocomplete="off">
-          </div>
-          <p class="status" id="wlStatus" role="status" aria-live="polite">One email when it's on the App Store, nothing else.</p>
-        </form>
+        <p class="alt-link not-ios">On iPhone? <a href="ios.html">Join the iOS waitlist →</a></p>
+        <p class="alt-link only-ios">Partner on Android? It's <a href="https://play.google.com/store/apps/details?id=com.babegetthis.android">free on Google Play</a> today.</p>
       </div>
 
-      <div class="shot">
-        <img src="assets/screenshot-home.jpg" alt="Babe, Get This home screen showing two shopping lists" width="300" height="650" fetchpriority="high">
-      </div>
-    </section>
-
-    <section class="features" id="features">
-      <h2>Made for “babe, can you grab…” moments</h2>
-      <div class="grid">
-        <div class="feature">
-          <div class="emoji">🎙️</div>
-          <h3>Speak your list</h3>
-          <p>Rambling in, tidy list out.</p>
+      <div class="stage">
+        <div class="phone back">
+          <img src="assets/screenshots/android-list.jpg" alt="The Weekly shop list, sorted into categories with quantities" width="1080" height="2400">
         </div>
-        <div class="feature">
-          <div class="emoji">🏷️</div>
-          <h3>Organized your way</h3>
-          <p>Quantities, categories, notes, and shops.</p>
-        </div>
-        <div class="feature">
-          <div class="emoji">💌</div>
-          <h3>Share with a code</h3>
-          <p>One code, and you both see the same list — live.</p>
-        </div>
-        <div class="feature">
-          <div class="emoji">🔒</div>
-          <h3>Private</h3>
-          <p>Lists you don't share never leave your device.</p>
+        <div class="phone front">
+          <img src="assets/screenshots/android-home.jpg" alt="Babe, Get This home screen with three shopping lists" width="1080" height="2400" fetchpriority="high">
         </div>
       </div>
     </section>
 
-    <section class="section faq" id="faq">
+    <section class="section" id="how">
+      <div class="center">
+        <span class="eyebrow">See it work</span>
+        <h2>Ramble in. Tidy list out.</h2>
+        <p class="lede">Say it however it comes out. Babe, Get This pulls out the items, the quantities and the categories for you.</p>
+      </div>
+
+      <div class="shots">
+        <figure>
+          <div class="phone">
+            <img src="assets/screenshots/android-voice.jpg" alt="Voice capture screen listening, with a 0:12 timer and a Stop button" width="1080" height="2400" loading="lazy">
+          </div>
+          <figcaption><strong>You say it.</strong> “We need eggs, um, greek yogurt, two avocados and the good sourdough…”</figcaption>
+        </figure>
+        <div class="arrow" aria-hidden="true">→</div>
+        <figure>
+          <div class="phone">
+            <img src="assets/screenshots/android-list.jpg" alt="The resulting list, grouped into Bakery, Dairy and Fruit categories with quantities" width="1080" height="2400" loading="lazy">
+          </div>
+          <figcaption><strong>It's sorted.</strong> Grouped by aisle, with quantities, ready for whoever's at the shops.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section familiar">
+      <div class="chat" aria-label="Example text conversation">
+        <p class="time">Tuesday 6:42 pm</p>
+        <p class="bubble me">at the shops, need anything?</p>
+        <p class="bubble them">eggs? maybe milk</p>
+        <p class="bubble them">oh and the thing for dinner</p>
+        <p class="bubble me">what thing 😭</p>
+        <p class="bubble them">you know. the thing</p>
+      </div>
+      <div>
+        <span class="eyebrow">Sound familiar?</span>
+        <h2>No more “what thing?” texts.</h2>
+        <p class="punch">Whoever's at the shops has <strong>the whole list</strong>, the moment the other one says it. Add things from the couch, from work, or halfway through cooking.</p>
+        <a class="btn primary not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it free on Google Play</a>
+        <a class="btn primary only-ios" href="ios.html">Join the iPhone waitlist</a>
+      </div>
+    </section>
+
+    <section class="section steps-split">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps. Zero “what else?” texts.</h2>
+        <p class="lede">Set it up once on the couch, and every shop after that just works.</p>
+        <ol class="steps">
+          <li class="step">
+            <h3>Say it</h3>
+            <p>Tap the mic and talk like you would to your partner. Or type, if that's more your thing.</p>
+          </li>
+          <li class="step">
+            <h3>It sorts itself</h3>
+            <p>Quantities, categories, notes and shops, all filled in so the list reads like you wrote it carefully.</p>
+          </li>
+          <li class="step">
+            <h3>Share it with a code</h3>
+            <p>Send your partner one code. From then on you both see the same list, live, from wherever you are.</p>
+          </li>
+        </ol>
+      </div>
+      <div class="phone">
+        <img src="assets/screenshots/android-share.jpg" alt="Share list live dialog showing a six-letter share code" width="1080" height="2400" loading="lazy">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="band privacy-band">
+        <div class="lock" aria-hidden="true">🔒</div>
+        <div>
+          <span class="eyebrow">Private by default</span>
+          <h2>Your lists are your business.</h2>
+          <p>Lists you don't share never leave your phone. Only the lists you share are stored on our server, so your partner can see them.</p>
+          <ul>
+            <li>No ads</li>
+            <li>No selling your data</li>
+            <li>Delete your account anytime</li>
+          </ul>
+          <p class="more"><a href="privacy-policy.html">Read the privacy policy →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <span class="eyebrow">FAQ</span>
       <h2>Questions, answered</h2>
       <div class="faq-list">
         <details class="faq-item">
@@ -173,7 +235,7 @@
         </details>
         <details class="faq-item">
           <summary>Is there an iPhone version?</summary>
-          <p>Not yet, but the iOS app is on the way. Leave your email in the form above and we&#x27;ll send you one email the day it&#x27;s on the App Store.</p>
+          <p>Not yet, but the iOS app is on the way. <a href="ios.html">Join the iPhone waitlist</a> and we&#x27;ll send you one email the day it&#x27;s on the App Store.</p>
         </details>
         <details class="faq-item">
           <summary>How do we share a shopping list?</summary>
@@ -194,7 +256,22 @@
       </div>
     </section>
 
+    <section class="section" id="finalCta">
+      <div class="band final">
+        <h2>Your next shop, sorted together.</h2>
+        <p>Free, no ads, and ready before your next shop.</p>
+        <a class="btn light big not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it free on Google Play</a>
+        <a class="btn light big only-ios" href="ios.html">Join the iPhone waitlist</a>
+        <p class="fine not-ios">On iPhone? <a href="ios.html">Join the iOS waitlist</a></p>
+      </div>
+    </section>
+
   </main>
+
+  <div class="mobile-cta" id="mobileCta">
+    <a class="btn primary big not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it free on Google Play</a>
+    <a class="btn primary big only-ios" href="ios.html">Join the iPhone waitlist</a>
+  </div>
 
   <footer>
     <div class="wrap cols">
@@ -206,7 +283,7 @@
     </div>
   </footer>
 
-  <script src="assets/waitlist.js"></script>
+  <script src="assets/landing.js"></script>
 
 </body>
 </html>
