@@ -629,7 +629,7 @@ header {
 
 .bubble.them {
   align-self: flex-start;
-  background: var(--white);
+  background: var(--grey);
   border-bottom-left-radius: 6px;
 }
 
@@ -687,35 +687,49 @@ header {
 .step h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
 .step p { color: var(--text-2); }
 
+/* Homepage: plain numbered list in big Anton numerals instead of cards. */
+.steps.numbered { gap: 28px; }
+.steps.numbered .step {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  column-gap: 20px;
+}
+.steps.numbered .step::before {
+  grid-row: span 2;
+  width: auto;
+  height: auto;
+  margin: 0;
+  background: none;
+  border-radius: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 0.9;
+  color: var(--blue);
+}
+.steps.numbered .step h3 { font-size: 1.3rem; }
+
 /* ---------- Dark bands (privacy, final CTA) ---------- */
 
 .band {
   background: var(--navy);
   color: var(--on-blue);
-  border-radius: 36px;
+  border-radius: 28px;
   padding: 56px 48px;
 }
 
 .band .eyebrow { color: var(--yellow); }
 .band p { color: var(--on-blue-2); }
 
-.privacy-band {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 36px;
-  align-items: center;
-}
-
-.privacy-band .lock {
-  width: 96px;
-  height: 96px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.6rem;
-}
+.privacy-band { max-width: none; }
+.privacy-band > div { max-width: 720px; }
+.privacy-band p { font-size: 1.08rem; }
 
 .privacy-band h2 { color: var(--on-blue); }
 .privacy-band ul {
@@ -731,20 +745,16 @@ header {
 
 .final {
   text-align: center;
-  background: linear-gradient(135deg, var(--navy), var(--blue));
+  background: var(--blue);
   padding: 72px 32px;
 }
 
-.final h2 { color: #FFFFFF; font-size: clamp(2rem, 5vw, 3rem); }
-.final p { color: rgba(255, 255, 255, 0.82); font-size: 1.1rem; margin: 0 auto 30px; max-width: 44ch; }
+.final h2 { color: var(--on-blue); font-size: clamp(2rem, 5vw, 3rem); }
+.final h2.display { font-size: clamp(2.4rem, 6vw, 4rem); }
+.final p { color: var(--on-blue-2); font-size: 1.1rem; margin: 0 auto 30px; max-width: 44ch; }
 .final .btn.light { color: var(--navy); }
-.final .fine { font-size: 0.85rem; margin: 18px auto 0; }
-.final .fine a { color: #FFFFFF; font-weight: 800; }
-
-@media (prefers-color-scheme: dark) {
-  .final { background: var(--blue); }
-  .final .btn.light { color: var(--navy); }
-}
+.final .fine { font-size: 0.9rem; margin: 18px auto 0; }
+.final .fine a { color: var(--on-blue); font-weight: 900; }
 
 /* ---------- FAQ ---------- */
 
@@ -757,17 +767,40 @@ header {
 .faq-item {
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 18px 22px;
+  border-radius: 14px;
+  padding: 0;
 }
 
 .faq-item summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
   font-weight: 800;
   cursor: pointer;
+  border-radius: 14px;
+  transition: background-color 0.15s ease;
 }
 
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  flex: none;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--blue);
+}
+
+.faq-item[open] summary::after { content: "−"; }
+.faq-item summary:hover { background: var(--grey); }
+.faq-item p { padding: 0 22px 18px; }
+
 .faq-item p {
-  margin: 10px 0 0;
+  margin: 0;
   color: var(--text-2);
 }
 

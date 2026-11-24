@@ -196,6 +196,53 @@ def check_ramble_callouts():
     return f"missing {bad}" if bad else None
 
 
+PRIVACY = ("Use it as a guest and your lists stay on your phone. Sign in and they sync to your account, "
+           "so they come back on a new phone. Only lists you share can be seen by anyone else.")
+
+
+def check_privacy_copy():
+    html = read("index.html")
+    if "never leave your phone" in html:
+        return "stale 'never leave your phone' copy"
+    band = re.search(r'class="band privacy-band".*?<p>(.*?)</p>', html, re.S)
+    if not band or re.sub(r"\s+", " ", band.group(1)).strip() != PRIVACY:
+        return f"privacy paragraph is {band.group(1).strip()[:60] if band else None!r}"
+    return None
+
+
+def check_no_lock_emoji():
+    html = read("index.html")
+    bad = [t for t in ["🔒", 'class="lock"'] if t in html]
+    return f"found {bad}" if bad else None
+
+
+def check_chat_role():
+    m = re.search(r'<div class="chat"([^>]*)>', read("index.html"))
+    if not m:
+        return "no .chat"
+    attrs = m.group(1)
+    return None if 'role="img"' in attrs and "aria-label=" in attrs else f"chat attrs: {attrs.strip()}"
+
+
+def check_faq_marker():
+    css = read("styles.css")
+    bad = []
+    if not re.search(r"\.faq-item summary::-webkit-details-marker\s*\{[^}]*display:\s*none", css):
+        bad.append("webkit marker not hidden")
+    if not re.search(r"\.faq-item summary\s*\{[^}]*list-style:\s*none", css):
+        bad.append("summary list-style not none")
+    if ".faq-item[open] summary::after" not in css:
+        bad.append("no open-state marker")
+    return ", ".join(bad) or None
+
+
+def check_final_solid():
+    m = re.search(r"^\.final\s*\{([^}]*)\}", read("styles.css"), re.M)
+    if not m:
+        return "no .final rule"
+    return "gradient in .final" if "linear-gradient" in m.group(1) else None
+
+
 CHECKS = [
     ("tokens_light", check_tokens_light),
     ("no_beige", check_no_beige),
@@ -211,6 +258,11 @@ CHECKS = [
     ("no_eyebrows_home", check_no_eyebrows_home),
     ("h2_display", check_h2_display),
     ("ramble_callouts", check_ramble_callouts),
+    ("privacy_copy", check_privacy_copy),
+    ("no_lock_emoji", check_no_lock_emoji),
+    ("chat_role", check_chat_role),
+    ("faq_marker", check_faq_marker),
+    ("final_solid", check_final_solid),
 ]
 
 
