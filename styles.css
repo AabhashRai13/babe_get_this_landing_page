@@ -25,6 +25,7 @@
     --line: #26365A;
     --text: #F2F5FA;
     --text-2: #B7C2D6;
+    --blue-light: #7FA2E8;  /* links and accent text on dark surfaces */
     --shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 10px 24px rgba(0, 0, 0, 0.35);
   }
 }
@@ -1034,6 +1035,41 @@ footer a {
 }
 
 footer a:hover { color: var(--blue); }
+
+/* ---------- Focus ---------- */
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.top :focus-visible,
+.band :focus-visible { outline-color: var(--yellow); }
+.top .btn.yellow:focus-visible,
+.band .btn.yellow:focus-visible { outline-color: var(--on-blue); } /* a yellow ring would merge into a yellow button */
+
+/* ---------- Dark mode ---------- */
+
+@media (prefers-color-scheme: dark) {
+  .display .hi,
+  .hero h1 em,
+  .eyebrow,
+  .alt-link a,
+  .faq-item a,
+  .page a,
+  .waitlist .status a,
+  .faq-item summary::after,
+  .steps.numbered .step::before { color: var(--blue-light); }
+
+  .btn.primary, .btn.navy { background: var(--blue); }
+  .btn.primary:hover, .btn.navy:hover { background: var(--blue); filter: brightness(1.12); }
+  .band:not(.final) { background: var(--grey); border: 1px solid var(--line); }
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible { outline-color: var(--yellow); }
+}
 
 /* ---------- Responsive ---------- */
 

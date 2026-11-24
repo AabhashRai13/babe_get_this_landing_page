@@ -96,7 +96,10 @@ def check_contrast_dark():
     if not dark:
         return "no dark-mode :root block"
     tokens.update(dark)
-    return _check_contrast(tokens)
+    detail = _check_contrast(tokens)
+    extra = [f"--blue-light on {bg} {contrast(tokens['--blue-light'], tokens[bg]):.2f}<4.5"
+             for bg in ("--white", "--grey") if contrast(tokens["--blue-light"], tokens[bg]) < 4.5]
+    return ", ".join(filter(None, [detail] + extra)) or None
 
 
 def check_fonts_loaded():
@@ -243,6 +246,33 @@ def check_final_solid():
     return "gradient in .final" if "linear-gradient" in m.group(1) else None
 
 
+def check_focus_visible():
+    css = read("styles.css")
+    m = re.search(r"([^{}]*:focus-visible[^{}]*)\{([^}]*)\}", css)
+    if not m:
+        return "no :focus-visible rule"
+    sel, body = m.group(1), m.group(2)
+    missing = [t for t in ["a", "button", "summary", "input"] if not re.search(r"(^|[\s,])" + t + r":focus-visible", sel)]
+    if missing:
+        return f"first :focus-visible rule misses {missing}"
+    return None if re.search(r"outline:\s*3px", body) else "outline not 3px"
+
+
+def check_ios_classes_styled():
+    css = read("styles.css")
+    missing = [c for c in [".badge", ".trust", ".eyebrow", ".demo-card", ".list-group", ".android-card"]
+               if not re.search(re.escape(c) + r"\s*[{,]", css)]
+    return f"no rule for {missing}" if missing else None
+
+
+def check_no_undefined_vars():
+    css = read("styles.css")
+    defined = set(css_tokens(root_block(css)))
+    used = set(re.findall(r"var\((--[\w-]+)", css))
+    missing = sorted(used - defined)
+    return f"undefined {missing}" if missing else None
+
+
 CHECKS = [
     ("tokens_light", check_tokens_light),
     ("no_beige", check_no_beige),
@@ -263,6 +293,9 @@ CHECKS = [
     ("chat_role", check_chat_role),
     ("faq_marker", check_faq_marker),
     ("final_solid", check_final_solid),
+    ("focus_visible", check_focus_visible),
+    ("ios_classes_styled", check_ios_classes_styled),
+    ("no_undefined_vars", check_no_undefined_vars),
 ]
 
 
