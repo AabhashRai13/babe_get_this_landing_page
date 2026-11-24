@@ -172,6 +172,30 @@ def check_header_spacing():
     return ", ".join(bad) or None
 
 
+def check_no_eyebrows_home():
+    return 'class="eyebrow"' if 'class="eyebrow"' in read("index.html") else None
+
+
+def check_h2_display():
+    h2s = re.findall(r"<h2([^>]*)>", main_html())
+    bad = [a for a in h2s if not re.search(r'class="[^"]*\bdisplay\b', a)]
+    return f"{len(bad)} h2 without .display" if bad or not h2s else None
+
+
+def check_ramble_callouts():
+    sec = re.search(r'<section[^>]*id="how"[^>]*>(.*?)</section>', read("index.html"), re.S)
+    if not sec:
+        return "no #how section"
+    body = sec.group(1)
+    tags = [re.sub(r"<[^>]+>", "", t).strip() for t in re.findall(r'class="tag"[^>]*>(.*?)</span>', body, re.S)]
+    bad = [t for t in ["You", "Sorted by aisle"] if t not in tags]
+    for alt in ["Voice capture screen listening, with a 0:12 timer and a Stop button",
+                "The resulting list, grouped into Bakery, Dairy and Fruit categories with quantities"]:
+        if f'alt="{alt}"' not in body:
+            bad.append(f"alt changed: {alt[:30]}")
+    return f"missing {bad}" if bad else None
+
+
 CHECKS = [
     ("tokens_light", check_tokens_light),
     ("no_beige", check_no_beige),
@@ -184,6 +208,9 @@ CHECKS = [
     ("skip_link", check_skip_link),
     ("nav_icon", check_nav_icon),
     ("header_spacing", check_header_spacing),
+    ("no_eyebrows_home", check_no_eyebrows_home),
+    ("h2_display", check_h2_display),
+    ("ramble_callouts", check_ramble_callouts),
 ]
 
 

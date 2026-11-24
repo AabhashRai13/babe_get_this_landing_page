@@ -357,9 +357,32 @@ header {
   max-width: 30ch;
   text-align: center;
   color: var(--text-2);
+  font-weight: 600;
 }
 
 .shots figcaption strong { display: block; color: var(--text); font-size: 1.1rem; }
+.shots figcaption strong.display { font-size: 1.7rem; font-weight: 400; margin-bottom: 4px; }
+
+/* Play Store-style callouts on flat screenshots. */
+.callout {
+  position: absolute;
+  border: 3px solid var(--yellow);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.tag {
+  position: absolute;
+  background: var(--yellow);
+  color: var(--navy);
+  font-weight: 900;
+  font-size: 13px;
+  line-height: 1;
+  padding: 6px 11px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(20, 37, 74, 0.18);
+}
 
 /* ---------- Steps beside the share screen ---------- */
 
@@ -384,6 +407,19 @@ header {
 
 .section { padding: 0 0 104px; }
 
+/* Full-bleed section backgrounds from inside .wrap. */
+.sec-grey, .sec-white {
+  padding-top: 96px;
+  padding-bottom: 104px;
+  margin-bottom: 0;
+  box-shadow: 0 0 0 100vmax var(--grey);
+  clip-path: inset(0 -100vmax);
+  background: var(--grey);
+}
+
+.sec-white { box-shadow: 0 0 0 100vmax var(--white); background: var(--white); }
+.sec-grey + .section:not(.sec-grey):not(.sec-white) { padding-top: 104px; }
+
 .eyebrow {
   display: block;
   font-size: 0.8rem;
@@ -400,6 +436,15 @@ header {
   line-height: 1.12;
   letter-spacing: -0.02em;
   margin-bottom: 14px;
+  text-wrap: balance;
+}
+
+.section h2.display {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  margin-bottom: 18px;
 }
 
 .section .lede {
@@ -969,6 +1014,8 @@ footer a:hover { color: var(--blue); }
   .shots { gap: 12px; }
   .shots .phone { width: 100%; max-width: 240px; padding: 6px; border-radius: 30px; }
   .shots .phone img { border-radius: 24px; }
+  .tag { font-size: 11px; padding: 5px 8px; }
+  .shots figcaption strong.display { font-size: 1.3rem; }
   .shots figcaption { font-size: 0.88rem; }
   .shots .arrow { font-size: 1.4rem; transform: none; }
   .steps-split { grid-template-columns: 1fr; gap: 40px; }
