@@ -25,6 +25,8 @@ Then open http://localhost:3000. (Opening the `.html` files directly from disk a
 
 Hosted on Hostinger. Upload everything (including `.htaccess` and `assets/`) into `public_html`. The `.htaccess` forces HTTPS, enables extensionless URLs (`/privacy-policy`), and sets basic caching.
 
+Don't upload `scripts/` or `docs/`; they are development files.
+
 ## Supabase keys — safe to commit
 
 `delete-account.html` contains the Supabase **project URL** and **publishable (anon) key**. These are intentionally public — the same values ship inside the Android APK, and all real security lives in Supabase (row-level security and the `delete_user` security-definer function, which only ever deletes the calling user's own account).
