@@ -16,3 +16,4 @@
 
 # Supabase CLI per-machine state
 supabase/.temp/
+.superpowers/
