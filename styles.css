@@ -62,47 +62,80 @@ body {
 html:not(.is-ios) .only-ios { display: none !important; }
 html.is-ios .not-ios { display: none !important; }
 
+/* ---------- Skip link ---------- */
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 20;
+  background: var(--yellow);
+  color: var(--navy);
+  font-weight: 900;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.skip:focus { top: 12px; }
+
+/* ---------- Display type (Anton, from the Play Store graphics) ---------- */
+
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.display .hi { display: block; color: var(--blue); }
+.top .display .hi, .band .display .hi { color: var(--yellow); }
+
 /* ---------- Header ---------- */
 
 header {
-  padding: 20px 0;
+  padding: 28px 0 20px;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 30px;
 }
 
 .nav img {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 
 .nav .brand {
-  font-weight: 800;
+  font-weight: 900;
   font-size: 1.15rem;
   color: var(--text);
   text-decoration: none;
   flex: 1;
+  margin-left: -18px; /* sit closer to the icon than the 30px nav gap */
 }
 
 .nav a.navlink {
   color: var(--text-2);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 0.95rem;
-  padding: 8px 14px;
-  border-radius: 999px;
 }
 
-.nav a.navlink:hover {
-  background: var(--grey);
-  color: var(--navy);
-}
+.nav a.navlink:hover { color: var(--blue); text-decoration: underline; text-underline-offset: 4px; }
 
-.nav .btn { padding: 10px 20px; font-size: 0.92rem; }
+.nav .btn { padding: 10px 18px; font-size: 0.92rem; }
+
+/* Blue surfaces: the homepage header + hero, like the Play Store panels. */
+.top { background: var(--blue); color: var(--on-blue); }
+.top .nav .brand { color: var(--on-blue); }
+.top .nav a.navlink { color: var(--on-blue-2); }
+.top .nav a.navlink:hover { color: var(--on-blue); }
 
 /* ---------- Buttons ---------- */
 
@@ -111,35 +144,26 @@ header {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 28px;
-  border-radius: 999px;
-  font-weight: 800;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 900;
   font-size: 1rem;
   text-decoration: none;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
 .btn:active { transform: scale(0.97); }
 
-.btn.primary {
-  background: var(--blue);
-  color: var(--on-blue);
-}
+.btn.primary, .btn.navy { background: var(--navy); color: var(--on-blue); }
+.btn.primary:hover, .btn.navy:hover { background: var(--blue); }
 
-.btn.primary:hover { background: var(--navy); }
+.btn.yellow { background: var(--yellow); color: var(--navy); }
+.btn.yellow:hover { background: #FFE08A; }
 
-.btn.big {
-  padding: 18px 34px;
-  font-size: 1.08rem;
-  box-shadow: 0 12px 28px rgba(20, 37, 74, 0.3);
-}
+.btn.big { padding: 17px 28px; font-size: 1.08rem; }
 
-.btn.light {
-  background: var(--on-blue);
-  color: var(--navy);
-}
-
-.btn.light:hover { background: #FFFFFF; }
+.btn.light { background: var(--on-blue); color: var(--navy); }
+.btn.light:hover { background: var(--yellow); }
 
 .btn .ico { width: 22px; height: 22px; flex: none; }
 
@@ -148,19 +172,20 @@ header {
 .hero {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 56px;
+  gap: 48px;
   align-items: center;
-  padding: 48px 0 96px;
+  padding: 40px 24px 88px;
 }
 
+/* ios.html still uses .badge, .trust, .alt-link and h1 em (restyled in the new palette). */
 .badge {
   display: inline-block;
   background: var(--yellow);
   color: var(--navy);
-  font-weight: 800;
+  font-weight: 900;
   font-size: 0.85rem;
-  padding: 6px 16px;
-  border-radius: 999px;
+  padding: 6px 14px;
+  border-radius: 8px;
   margin-bottom: 22px;
 }
 
@@ -170,37 +195,32 @@ header {
   line-height: 1.05;
   letter-spacing: -0.03em;
   margin-bottom: 20px;
+  text-wrap: balance;
+}
+
+.hero h1.display {
+  font-size: clamp(2.6rem, 7vw, 4.75rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  margin-bottom: 22px;
 }
 
 .hero h1 em {
   font-style: normal;
   color: var(--blue);
-  position: relative;
-  white-space: nowrap;
-}
-
-/* Hand-drawn-ish underline under the emphasised word. */
-.hero h1 em::after {
-  content: "";
-  position: absolute;
-  left: -2%;
-  right: -2%;
-  bottom: 0.02em;
-  height: 0.22em;
-  background: var(--yellow);
-  border-radius: 999px;
-  z-index: -1;
-  transform: rotate(-1.5deg);
 }
 
 .hero p.sub {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--text-2);
   max-width: 44ch;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 
 .hero p.sub strong { color: var(--text); }
+.top .hero p.sub { color: var(--on-blue-2); }
+.top .hero p.sub strong { color: var(--on-blue); }
 
 .cta-row {
   display: flex;
@@ -208,6 +228,16 @@ header {
   flex-wrap: wrap;
   align-items: center;
 }
+
+.meta {
+  margin-top: 18px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--on-blue-2);
+}
+
+.meta a { color: var(--on-blue); font-weight: 900; }
+.meta a:hover { color: var(--yellow); }
 
 .trust {
   display: flex;
@@ -246,21 +276,13 @@ header {
   padding: 20px 0;
 }
 
-.stage::before {
-  content: "";
-  position: absolute;
-  inset: 0 -12%;
-  background: radial-gradient(closest-side, var(--grey), transparent);
-  opacity: 0.8;
-}
-
 .phone {
   position: relative;
   width: 270px;
   max-width: 64vw;
-  padding: 9px;
+  padding: 8px;
   background: var(--navy);
-  border-radius: 42px;
+  border-radius: 34px;
   box-shadow: var(--shadow);
 }
 
@@ -268,7 +290,7 @@ header {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 33px;
+  border-radius: 27px;
 }
 
 /* Hero: home screen in front, the list peeking out behind it. */
@@ -938,7 +960,7 @@ footer a:hover { color: var(--blue); }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; padding: 24px 0 72px; text-align: center; gap: 40px; }
+  .hero { grid-template-columns: 1fr; padding: 16px 24px 72px; text-align: center; gap: 40px; }
   .hero p.sub { margin-left: auto; margin-right: auto; }
   .cta-row, .trust { justify-content: center; }
   .waitlist { margin-left: auto; margin-right: auto; }
@@ -962,6 +984,8 @@ footer a:hover { color: var(--blue); }
 
 @media (max-width: 540px) {
   .nav a.navlink { display: none; }
+  .nav { gap: 12px; }
+  .nav .brand { margin-left: 0; font-size: 1.05rem; }
   .nav .btn { padding: 9px 16px; font-size: 0.85rem; }
   .phone { width: 230px; }
   .stage .phone.back { margin-left: -165px; width: 160px; }

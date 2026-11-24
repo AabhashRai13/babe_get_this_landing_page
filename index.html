@@ -17,7 +17,7 @@
   <meta property="og:image:alt" content="Babe, Get This: Say it once. It's on both your phones.">
   <meta property="og:site_name" content="Babe, Get This">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#607D8B">
+  <meta name="theme-color" content="#3A63B8">
   <link rel="apple-touch-icon" href="assets/icon.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,51 +95,50 @@
   </script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <header class="wrap">
-    <nav class="nav">
-      <img src="assets/icon.webp" alt="Babe, Get This app icon">
-      <a class="brand" href="index.html">Babe, Get This</a>
-      <a class="navlink" href="#how">How it works</a>
-      <a class="navlink" href="#faq">FAQ</a>
-      <a class="btn primary not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get the app</a>
-      <a class="btn primary only-ios" href="ios.html">iPhone waitlist</a>
-    </nav>
+  <header class="top">
+    <div class="wrap">
+      <nav class="nav">
+        <img src="assets/icon.webp" alt="" width="40" height="40">
+        <a class="brand" href="index.html">Babe, Get This</a>
+        <a class="navlink" href="#how">How it works</a>
+        <a class="navlink" href="#faq">FAQ</a>
+        <a class="btn yellow not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get the app</a>
+        <a class="btn yellow only-ios" href="ios.html">iPhone waitlist</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="wrap">
+  <main id="main">
 
-    <section class="hero">
-      <div>
-        <span class="badge not-ios">🛒 Free on Google Play</span>
-        <span class="badge only-ios">📱 iPhone version coming soon</span>
-        <h1>Say it once. It's on <em>both</em> your phones.</h1>
-        <p class="sub">Babe, Get This turns <strong>“we need milk, eggs and the good bread”</strong> into one shared shopping list for the two of you, updated live.</p>
+    <div class="top hero-band">
+      <section class="hero wrap">
+        <div>
+          <h1 class="display">Say it once. <span class="hi">It's on both your phones.</span></h1>
+          <p class="sub">Babe, Get This turns <strong>“we need milk, eggs and the good bread”</strong> into one shared shopping list for the two of you, updated live.</p>
 
-        <div class="cta-row" id="heroCta">
-          <a class="btn primary big not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it free on Google Play</a>
-          <a class="btn primary big only-ios" href="ios.html">Join the iPhone waitlist</a>
+          <div class="cta-row" id="heroCta">
+            <a class="btn yellow big not-ios" href="https://play.google.com/store/apps/details?id=com.babegetthis.android">Get it free on Google Play</a>
+            <a class="btn yellow big only-ios" href="ios.html">Join the iPhone waitlist</a>
+          </div>
+
+          <p class="meta not-ios">Free · No ads · Private unless you share · On iPhone? <a href="ios.html">Join the waitlist →</a></p>
+          <p class="meta only-ios">Free · No ads · Partner on Android? It's <a href="https://play.google.com/store/apps/details?id=com.babegetthis.android">free on Google Play</a> today.</p>
         </div>
 
-        <ul class="trust">
-          <li>Free</li>
-          <li>No ads</li>
-          <li>Private unless you share</li>
-        </ul>
-
-        <p class="alt-link not-ios">On iPhone? <a href="ios.html">Join the iOS waitlist →</a></p>
-        <p class="alt-link only-ios">Partner on Android? It's <a href="https://play.google.com/store/apps/details?id=com.babegetthis.android">free on Google Play</a> today.</p>
-      </div>
-
-      <div class="stage">
-        <div class="phone back">
-          <img src="assets/screenshots/android-list.jpg" alt="The Weekly shop list, sorted into categories with quantities" width="1080" height="2400">
+        <div class="stage">
+          <div class="phone frame back">
+            <img src="assets/screenshots/android-list.jpg" alt="The Weekly shop list, sorted into categories with quantities" width="1080" height="2400">
+          </div>
+          <div class="phone frame front">
+            <img src="assets/screenshots/android-home.jpg" alt="Babe, Get This home screen with three shopping lists" width="1080" height="2400" fetchpriority="high">
+          </div>
         </div>
-        <div class="phone front">
-          <img src="assets/screenshots/android-home.jpg" alt="Babe, Get This home screen with three shopping lists" width="1080" height="2400" fetchpriority="high">
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
+
+    <div class="wrap">
 
     <section class="section" id="how">
       <div class="center">
@@ -265,6 +264,8 @@
         <p class="fine not-ios">On iPhone? <a href="ios.html">Join the iOS waitlist</a></p>
       </div>
     </section>
+
+    </div>
 
   </main>
 

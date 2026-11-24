@@ -108,12 +108,82 @@ def check_fonts_loaded():
     return f"missing Anton+Nunito link: {bad}" if bad else None
 
 
+def section(html: str, cls: str) -> str:
+    """Inner HTML of the first <section> whose class list contains cls."""
+    m = re.search(r'<section class="[^"]*\b' + re.escape(cls) + r'\b[^"]*"[^>]*>(.*?)</section>', html, re.S)
+    return m.group(1) if m else ""
+
+
+def main_html() -> str:
+    m = re.search(r"<main\b.*?</main>", read("index.html"), re.S)
+    return m.group(0) if m else ""
+
+
+def check_hero_tells_removed():
+    hero = section(read("index.html"), "hero")
+    if not hero:
+        return "no hero section"
+    bad = [t for t in ['class="badge', 'class="trust', "<em>", "🛒", "📱"] if t in hero]
+    return f"still present: {bad}" if bad else None
+
+
+def check_hero_meta():
+    hero = section(read("index.html"), "hero")
+    metas = re.findall(r'<p class="meta ([^"]*)"[^>]*>(.*?)</p>', hero, re.S)
+    kinds = sorted(k.strip() for k, _ in metas)
+    if kinds != ["not-ios", "only-ios"]:
+        return f"meta paragraphs: {kinds}"
+    android = next(t for k, t in metas if k.strip() == "not-ios")
+    if "Free · No ads · Private unless you share" not in re.sub(r"<[^>]+>", "", android):
+        return "not-ios meta copy differs"
+    return None
+
+
+def check_theme_color():
+    return None if '<meta name="theme-color" content="#3A63B8">' in read("index.html") else "theme-color not #3A63B8"
+
+
+def check_skip_link():
+    html = read("index.html")
+    body = re.search(r"<body>\s*(<[^>]+>)", html)
+    if not body or body.group(1) != '<a class="skip" href="#main">':
+        return f"first body element is {body.group(1) if body else None}"
+    return None if re.search(r'<main[^>]*id="main"', html) else "<main> has no id=main"
+
+
+def check_nav_icon():
+    img = re.search(r'<nav class="nav">\s*(<img[^>]+>)', read("index.html"))
+    if not img:
+        return "no nav img"
+    tag = img.group(1)
+    bad = [a for a in ['width="40"', 'height="40"', 'alt=""'] if a not in tag]
+    return f"nav img missing {bad}" if bad else None
+
+
+def check_header_spacing():
+    css = read("styles.css")
+    header = re.search(r"^header\s*\{([^}]*)\}", css, re.M)
+    nav = re.search(r"^\.nav\s*\{([^}]*)\}", css, re.M)
+    bad = []
+    if not header or not re.search(r"padding:\s*28px\b", header.group(1)):
+        bad.append("header padding not 28px")
+    if not nav or not re.search(r"gap:\s*30px", nav.group(1)):
+        bad.append(".nav gap not 30px")
+    return ", ".join(bad) or None
+
+
 CHECKS = [
     ("tokens_light", check_tokens_light),
     ("no_beige", check_no_beige),
     ("contrast_light", check_contrast_light),
     ("contrast_dark", check_contrast_dark),
     ("fonts_loaded", check_fonts_loaded),
+    ("hero_tells_removed", check_hero_tells_removed),
+    ("hero_meta", check_hero_meta),
+    ("theme_color", check_theme_color),
+    ("skip_link", check_skip_link),
+    ("nav_icon", check_nav_icon),
+    ("header_spacing", check_header_spacing),
 ]
 
 
