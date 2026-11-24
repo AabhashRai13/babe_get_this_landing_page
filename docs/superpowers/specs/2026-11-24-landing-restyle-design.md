@@ -87,8 +87,16 @@ step cards, 🔒 block, gradient CTA band.
 
 **Fixes carried along.** Visible `:focus-visible` rings; nav icon `width`/`height` and
 `alt=""`; emoji hidden from assistive tech where any remain; `aria-label` on the chat
-only with a role; `theme-color` matching the hero; `color-scheme` declared; skip link;
-remove the unused voice-demo JS and CSS.
+only with a role; `theme-color` matching the hero; `color-scheme` declared; skip link.
+
+**Correction to the review (found while planning).** The voice-demo JS and CSS are not
+dead code: `ios.html` uses them (`#demo`, loaded via `assets/landing.js`). Keep them.
+
+**`ios.html` (builder's call, confirmed while planning).** It shares `styles.css` and
+uses classes the homepage drops (`.badge`, `.trust`, `.eyebrow`, `h1 em`, `.demo`,
+`.band.final`, `.steps`). Those rules stay, restyled into the new palette (no beige or
+peach), so the iOS page keeps its layout and picks up the new look. Only `index.html`
+markup changes.
 
 **Dark mode.** Kept, using navy surfaces with the same blue and yellow accents.
 
