@@ -100,6 +100,9 @@ header {
   padding: 28px 0 20px;
 }
 
+/* .wrap's side padding would otherwise override the top/bottom padding on legal pages. */
+header.wrap { padding-top: 28px; padding-bottom: 20px; }
+
 .nav {
   display: flex;
   align-items: center;
@@ -175,8 +178,10 @@ header {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 48px;
   align-items: center;
-  padding: 40px 24px 88px;
+  padding: 40px 0 88px;
 }
+
+.hero-band .hero { padding-left: 24px; padding-right: 24px; }
 
 /* ios.html still uses .badge, .trust, .alt-link and h1 em (restyled in the new palette). */
 .badge {
@@ -546,16 +551,16 @@ header {
   margin-bottom: 8px;
 }
 
-.list-group:nth-of-type(1) > span { background: var(--grey); color: var(--navy); }
+.list-group:nth-of-type(1) > span { background: var(--grey); color: var(--text); }
 .list-group:nth-of-type(2) > span { background: var(--yellow); color: var(--navy); }
-.list-group:nth-of-type(3) > span { background: var(--grey); color: var(--navy); }
+.list-group:nth-of-type(3) > span { background: var(--grey); color: var(--text); }
 
 .list-item {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  background: var(--white);
+  background: var(--grey);
   border-radius: 14px;
   font-weight: 700;
   margin-bottom: 6px;
@@ -681,9 +686,9 @@ header {
   margin-bottom: 18px;
 }
 
-.step:nth-child(1)::before { background: var(--grey); color: var(--navy); }
+.step:nth-child(1)::before { background: var(--grey); color: var(--text); }
 .step:nth-child(2)::before { background: var(--yellow); color: var(--navy); }
-.step:nth-child(3)::before { background: var(--grey); color: var(--navy); }
+.step:nth-child(3)::before { background: var(--grey); color: var(--text); }
 
 .step h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
 .step p { color: var(--text-2); }
@@ -940,7 +945,7 @@ header {
 
 .page .note {
   background: var(--grey);
-  color: var(--navy);
+  color: var(--text);
   border-radius: 16px;
   padding: 16px 20px;
   font-size: 0.95rem;
@@ -1063,7 +1068,13 @@ input:focus-visible {
   .page a,
   .waitlist .status a,
   .faq-item summary::after,
-  .steps.numbered .step::before { color: var(--blue-light); }
+  .steps.numbered .step::before,
+  .waitlist .status.ok,
+  .del-card .status.ok,
+  .replay,
+  footer a:hover,
+  .nav a.navlink:hover { color: var(--blue-light); }
+  .top .nav a.navlink:hover { color: var(--on-blue); }
 
   .btn.primary, .btn.navy { background: var(--blue); }
   .btn.primary:hover, .btn.navy:hover { background: var(--blue); filter: brightness(1.12); }
@@ -1074,7 +1085,7 @@ input:focus-visible {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; padding: 16px 24px 72px; text-align: center; gap: 40px; }
+  .hero { grid-template-columns: 1fr; padding: 16px 0 72px; text-align: center; gap: 40px; }
   .hero p.sub { margin-left: auto; margin-right: auto; }
   .cta-row, .trust { justify-content: center; }
   .waitlist { margin-left: auto; margin-right: auto; }

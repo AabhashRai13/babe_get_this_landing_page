@@ -273,6 +273,50 @@ def check_no_undefined_vars():
     return f"undefined {missing}" if missing else None
 
 
+def _rules(css: str):
+    """(selector, body) for every plain rule (no @-wrappers)."""
+    return [(m.group(1).strip(), m.group(2)) for m in re.finditer(r"([^{}@]+)\{([^{}]*)\}", css)]
+
+
+def check_navy_text_on_light_bg():
+    """--navy has no dark value, so navy text on --grey/--white vanishes in dark mode."""
+    bad = [sel for sel, body in _rules(read("styles.css"))
+           if re.search(r"background:\s*var\(--(grey|white)\)", body) and re.search(r"(^|;|\s)color:\s*var\(--navy\)", body)]
+    return f"navy text on grey/white: {bad}" if bad else None
+
+
+def check_header_wrap_padding():
+    css = read("styles.css")
+    m = re.search(r"^header\.wrap\s*\{([^}]*)\}", css, re.M)
+    return None if m and re.search(r"padding-top:\s*28px", m.group(1)) else "no header.wrap padding-top: 28px"
+
+
+def check_dark_blue_text():
+    css = read("styles.css")
+    m = re.search(r"/\* ---------- Dark mode ---------- \*/\s*@media \(prefers-color-scheme: dark\)\s*\{(.*?)\n\}", css, re.S)
+    block = m.group(1) if m else ""
+    need = [".waitlist .status.ok", ".del-card .status.ok", ".replay", "footer a:hover", ".nav a.navlink:hover"]
+    missing = [n for n in need if n not in block]
+    return f"dark override missing {missing}" if missing else None
+
+
+def check_ios_hero_padding():
+    css = read("styles.css")
+    hero = re.search(r"^\.hero\s*\{([^}]*)\}", css, re.M)
+    band = re.search(r"^\.hero-band \.hero\s*\{([^}]*)\}", css, re.M)
+    bad = []
+    if not hero or re.search(r"padding:\s*\S+\s+24px", hero.group(1)):
+        bad.append(".hero has side padding (doubles ios.html gutter)")
+    if not band or "24px" not in band.group(1):
+        bad.append("no .hero-band .hero side padding")
+    return ", ".join(bad) or None
+
+
+def check_list_item_fill():
+    m = re.search(r"^\.list-item\s*\{([^}]*)\}", read("styles.css"), re.M)
+    return "list-item background is --white inside a --white card" if m and "background: var(--white)" in m.group(1) else None
+
+
 CHECKS = [
     ("tokens_light", check_tokens_light),
     ("no_beige", check_no_beige),
@@ -296,6 +340,11 @@ CHECKS = [
     ("focus_visible", check_focus_visible),
     ("ios_classes_styled", check_ios_classes_styled),
     ("no_undefined_vars", check_no_undefined_vars),
+    ("navy_text_on_light_bg", check_navy_text_on_light_bg),
+    ("header_wrap_padding", check_header_wrap_padding),
+    ("dark_blue_text", check_dark_blue_text),
+    ("ios_hero_padding", check_ios_hero_padding),
+    ("list_item_fill", check_list_item_fill),
 ]
 
 
