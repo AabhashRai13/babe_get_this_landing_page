@@ -25,17 +25,17 @@
 
   <main class="page">
     <h1>Privacy Policy</h1>
-    <p class="updated">Effective date: November 11, 2026</p>
+    <p class="updated">Effective date: November 24, 2026</p>
 
     <p>This Privacy Policy describes how <strong>Babe, Get This</strong> ("the app", "we", "us") collects, uses, and protects your information when you use our Android application and the website <a href="https://babegetthis.com">babegetthis.com</a>.</p>
 
-    <p>The short version: lists you keep to yourself stay on your device and are never uploaded. When you share a list using a share code, that list (and its items) is stored on our server so the people you share with can see and edit it. <strong>Sharing is the only thing that uploads a list — if you never share, nothing about your lists leaves your phone.</strong> No ads and no data sales. We do use Google's analytics and crash reporting to see which features get used and to find bugs — it never receives your list contents, item names, or recordings, and you can turn both off in Settings.</p>
+    <p>The short version: if you use the app without an account (as a guest), your lists stay on your phone only. <strong>If you are signed in, all your lists — shared or not — are stored on our server and synced to your account</strong>, so they come back if you reinstall the app or move to a new phone. Only lists you share have a share code, and only shared lists can be seen by other people. No ads and no data sales. We do use Google's analytics and crash reporting to see which features get used and to find bugs — it never receives your list contents, item names, or recordings, and you can turn both off in Settings.</p>
 
     <h2>1. Information We Collect</h2>
 
     <h3>Account information</h3>
     <ul>
-      <li><strong>Email address and password</strong> — used to create and sign in to your account. Authentication is handled by Supabase; your password is stored only in hashed form and is never visible to us.</li>
+      <li><strong>Email and password, or Sign in with Google</strong> — used to create and sign in to your account. If you use email and password, your password is stored only in hashed form and is never visible to us. If you use "Sign in with Google", we receive your name and email address from Google; we never see your Google password. Either way, authentication is handled by Supabase.</li>
       <li><strong>Why we require an account</strong> — features like voice transcription run on our servers and cost real money to operate. Sign-in exists solely to prevent abuse of that infrastructure, not to profile you.</li>
     </ul>
 
@@ -53,7 +53,27 @@
 
     <h3>Shared lists</h3>
     <ul>
-      <li><strong>When you share a list</strong>, we store on our server: the list name, and each item's name, quantity, category, shop, note, and checked/unchecked state. We also store who created the list and who has joined it (linked to accounts). We do not record who added, edited, or checked off each item — there is no per-edit history.</li>
+      <li><strong>When you share a list</strong>, we store on our server: the list name, and each item's name, quantity, category, shop, note, checked/unchecked state, and the time it was ticked. We also store who created the list and who has joined it (linked to accounts). We don't keep an edit history of your lists. When you tick an item as bought, we record what was bought and when — see Purchase history below.</li>
+    </ul>
+
+    <h3>Purchase history (Got This)</h3>
+    <ul>
+      <li><strong>What is recorded</strong> — when you tick an item as bought, the app records the item's name, its category and the time you ticked it.</li>
+      <li><strong>Where it is stored</strong> — if you are signed in, this purchase history is stored on our server and synced to your account. It is used to show you when you last bought something, to suggest items, and to send running-low reminders.</li>
+      <li><strong>Unticking</strong> — if you untick an item within 2 hours, that purchase is removed. If you untick it later, the purchase is kept, because people often reuse the same list.</li>
+      <li><strong>Deleting a list</strong> — your purchase history is kept even if you later delete the list.</li>
+      <li><strong>Shared lists</strong> — on a shared list, a tick is shared with the people on that list at the time, so they get the purchase in their own history too.</li>
+      <li><strong>How long it is kept</strong> — individual tick records are deleted automatically after 60 days. Your purchase history stays until you clear it or delete your account.</li>
+      <li><strong>Clearing it</strong> — "Clear purchase history" in the app deletes it from our server and from all your phones.</li>
+      <li>Your purchase history is never sold, never used for ads and never used to profile you for anyone else.</li>
+    </ul>
+
+    <h3>Running-low reminders</h3>
+    <ul>
+      <li><strong>What they are</strong> — the app can send you a notification when items you buy regularly are probably running low.</li>
+      <li><strong>How it works</strong> — this is worked out on your phone from your purchase history.</li>
+      <li><strong>What our server records</strong> — only that a reminder was sent that week (your account ID and the week), so you don't get the same reminder on several phones.</li>
+      <li><strong>Turning them off</strong> — you can turn reminders off in the app or in Android's notification settings.</li>
     </ul>
 
     <h3>Voice recordings</h3>
@@ -81,7 +101,7 @@
 
     <h2>2. What We Do NOT Collect</h2>
     <ul>
-      <li><strong>Lists you never share</strong> — these stay entirely on your device.</li>
+      <li><strong>Guest lists</strong> — if you use the app without an account, your lists stay entirely on your phone.</li>
       <li>No advertising identifiers, and no ads of any kind.</li>
       <li>No advertising or tracking SDKs, and no cross-app or cross-site tracking.</li>
       <li>No analytics on what is in your lists — see "Usage analytics and crash reports" above for exactly what is collected.</li>
@@ -94,6 +114,7 @@
     <ul>
       <li>To create and secure your account and keep you signed in.</li>
       <li>To convert your voice recordings into shopping list items when you use voice capture.</li>
+      <li>To show your purchase history, suggestions and running-low reminders.</li>
       <li>To read and act on feedback you send us.</li>
       <li>To send a single launch notification to anyone who joined a website waitlist.</li>
       <li>To understand which features are used and to diagnose crashes, so we can improve the app.</li>
@@ -104,7 +125,7 @@
     <h2>4. Service Providers</h2>
     <p>We use a small number of infrastructure providers to run the app. They process data on our behalf and are not permitted to use it for their own purposes:</p>
     <ul>
-      <li><strong>Supabase</strong> — accounts, and storage/sync of shared lists. See the <a href="https://supabase.com/privacy" rel="noopener">Supabase Privacy Policy</a>.</li>
+      <li><strong>Supabase</strong> — accounts, storage and sync of all your lists (shared or not) when you are signed in, and purchase history. See the <a href="https://supabase.com/privacy" rel="noopener">Supabase Privacy Policy</a>.</li>
       <li><strong>Railway</strong> — hosts our backend and the voice endpoint. See the <a href="https://railway.com/legal/privacy" rel="noopener">Railway Privacy Policy</a>.</li>
       <li><strong>Groq</strong> — transcribes voice recordings to text. See the <a href="https://groq.com/privacy-policy" rel="noopener">Groq Privacy Policy</a>.</li>
       <li><strong>Anthropic</strong> — turns the transcript into a list of items. See the <a href="https://www.anthropic.com/legal/privacy" rel="noopener">Anthropic Privacy Policy</a>.</li>
@@ -113,7 +134,9 @@
 
     <h2>5. Data Storage and Security</h2>
     <ul>
-      <li>Lists you don't share are stored only locally on your device — we have no copy of them. Shared lists are stored on our server.</li>
+      <li>If you use the app as a guest (without an account), your lists are stored only on your phone — we have no copy of them.</li>
+      <li>If you are signed in, all your lists, shared or not, are stored on our server (Supabase) and synced to your account, so they come back after you reinstall the app or move to a new phone.</li>
+      <li>Only shared lists have a share code, and only shared lists are visible to other people.</li>
       <li>All communication between the app and our servers is encrypted in transit using HTTPS/TLS.</li>
       <li>Access to production data is restricted, and passwords are stored using industry-standard hashing.</li>
       <li>No method of transmission or storage is 100% secure, but we work to protect your information using reasonable technical and organizational measures.</li>
@@ -130,7 +153,10 @@
       <li><strong>Voice recordings</strong> are processed transiently for transcription and are not retained as a voice archive.</li>
       <li><strong>Usage analytics</strong> are retained by Google Analytics for 14 months and then deleted automatically. <strong>Crash reports</strong> are retained for approximately 90 days.</li>
       <li><strong>Shared lists</strong> are kept on our server while at least one member still has the list. Deleted items and lists are marked deleted but their rows are retained — this is how the deletion reaches other members' devices.</li>
-      <li>When you delete your account, your account record is permanently deleted from our systems within 30 days, except where a longer retention period is required by law. A list you shared stays available to the other members who joined it, but is no longer linked to you. Local lists are removed when you uninstall the app or clear its data.</li>
+      <li><strong>Purchase history</strong> is kept until you clear it in the app or delete your account.</li>
+      <li><strong>Tick records</strong> (the individual record of each item you ticked) are deleted automatically after 60 days.</li>
+      <li><strong>Running-low reminder records</strong> are kept with your account.</li>
+      <li>When you delete your account, your account record, purchase history, tick records and running-low reminder records are permanently deleted from our systems within 30 days, except where a longer retention period is required by law. A list you shared stays available to the other members who joined it, but is no longer linked to you. Guest lists (used without an account) are removed when you uninstall the app or clear its data.</li>
       <li>Because analytics and crash records are tied to a random identifier rather than to your name or email, deleting your account does not retroactively erase past records — but from that point the identifier no longer corresponds to any account. If you want those past records deleted as well, email us and we will do it.</li>
     </ul>
 
